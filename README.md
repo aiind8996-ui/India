@@ -1,3 +1,4 @@
+.................
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -22,10 +23,9 @@ body{
   font-family:system-ui, Arial;
   height:100vh;
   overflow:hidden;
-  position:relative;
 }
 
-/* PAGES */
+/* Pages */
 .page{
   display:none;
   height:100vh;
@@ -35,7 +35,7 @@ body{
 }
 .page.active{display:block;}
 
-/* TOP TEXT */
+/* Top bar */
 .top{
   position:fixed;
   top:0; left:0;
@@ -47,19 +47,13 @@ body{
   color:var(--accent);
   background:black;
   z-index:10;
-  animation: floatText 3s ease-in-out infinite alternate, scaleText 4s ease-in-out infinite alternate;
+  animation: floatText 3s ease-in-out infinite alternate;
 }
-@keyframes floatText {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-10px); }
-}
-@keyframes scaleText {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
+@keyframes floatText{
+  from{transform:translateY(0)}
+  to{transform:translateY(-8px)}
 }
 
-/* BACK & SETTINGS */
 .back{
   position:fixed;
   top:15px; left:15px;
@@ -73,7 +67,7 @@ body{
   z-index:11;
 }
 
-/* SETTINGS MENU */
+/* Menu */
 .menu{
   position:fixed;
   top:65px; right:15px;
@@ -93,25 +87,36 @@ body{
 .menu div:last-child{border:none;}
 .menu div:hover{background:#1c1c1c;}
 
-/* OPEN BUTTON */
+/* Home animation */
+#page1{
+  background:linear-gradient(45deg,#ff9933,#ffcc33,#ff3366,#ff9933);
+  background-size:600% 600%;
+  animation:bgMove 18s ease infinite;
+}
+@keyframes bgMove{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+/* Button */
 .main-btn{
-  margin-top:80px;
-  padding:16px 45px;
-  font-size:20px;
-  border-radius:10px;
+  margin-top:90px;
+  padding:18px 50px;
+  font-size:22px;
+  border-radius:12px;
   border:2px solid var(--accent);
   background:#111;
   color:white;
-  cursor:pointer;
-  transition: transform 0.3s, background 0.3s;
+  animation:pulse 2s infinite;
 }
-.main-btn:hover{
-  background:var(--accent);
-  color:black;
-  transform: scale(1.05);
+@keyframes pulse{
+  0%{box-shadow:0 0 10px var(--accent)}
+  50%{box-shadow:0 0 30px var(--accent);transform:scale(1.05)}
+  100%{box-shadow:0 0 10px var(--accent)}
 }
 
-/* CARDS */
+/* Cards */
 .card{
   margin:16px auto;
   width:85%;
@@ -124,15 +129,14 @@ body{
   font-size:18px;
   text-decoration:none;
   display:block;
-  transition: background 0.3s, transform 0.3s;
+  animation:fadeUp 1s forwards;
 }
-.card:hover{
-  background:var(--accent);
-  color:black;
-  transform: scale(1.03);
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
 }
 
-/* CHAT BUTTONS */
+/* Chat */
 .chat-box{
   width:85%;
   max-width:320px;
@@ -149,91 +153,13 @@ body{
   font-size:16px;
   color:#25D366;
   text-decoration:none;
-  transition: background 0.3s, transform 0.3s;
 }
-.chat-btn:hover{
-  background:var(--accent);
-  color:black;
-  transform: scale(1.02);
-}
-
-/* PAGE 1 ANIMATION */
-#page1 {
-  background: linear-gradient(45deg, #ff9933, #ffcc33, #ff6600, #ff3366, #ff33cc, #ff9933);
-  background-size: 600% 600%;
-  animation: smoothGradient 20s ease infinite;
-  position:relative;
-  overflow:hidden;
-}
-@keyframes smoothGradient {
-  0% { background-position: 0% 50%; }
-  25% { background-position: 50% 50%; }
-  50% { background-position: 100% 50%; }
-  75% { background-position: 50% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* OPEN BUTTON PULSE */
-#openBtn {
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeInUp 1.5s forwards 0.5s, pulseGlow 2s infinite;
-}
-@keyframes fadeInUp {
-  to { opacity: 1; transform: translateY(0); }
-}
-@keyframes pulseGlow {
-  0% { box-shadow: 0 0 10px #ff9933; transform: scale(1); }
-  50% { box-shadow: 0 0 25px #ffcc33; transform: scale(1.05); }
-  100% { box-shadow: 0 0 10px #ff9933; transform: scale(1); }
-}
-
-/* PARTICLES */
-.particle {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  background: rgba(255,255,255,0.8);
-  border-radius: 50%;
-  animation: floatParticle linear infinite;
-}
-@keyframes floatParticle {
-  0% { transform: translateY(0) translateX(0); opacity:0; }
-  10% { opacity:1; }
-  100% { transform: translateY(600px) translateX(30px); opacity:0; }
-}
-
-/* PAGE 2 CARD ANIMATION */
-.page#page2 .card {
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeSlideUp 1s forwards;
-}
-.page#page2 .card:nth-of-type(1) { animation-delay: 0.2s; }
-.page#page2 .card:nth-of-type(2) { animation-delay: 0.4s; }
-.page#page2 .card:nth-of-type(3) { animation-delay: 0.6s; }
-.page#page2 .card:nth-of-type(4) { animation-delay: 0.8s; }
-@keyframes fadeSlideUp {
-  to { opacity:1; transform: translateY(0); }
-}
-
-/* Chat buttons animation */
-.page#page2 .chat-btn {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeSlideUp 1s forwards;
-}
-.page#page2 .chat-btn:nth-child(1) { animation-delay: 1s; }
-.page#page2 .chat-btn:nth-child(2) { animation-delay: 1.2s; }
 </style>
 </head>
 
 <body>
 
-<!-- PARTICLES -->
-<div id="particles"></div>
-
-<!-- SETTINGS MENU -->
+<!-- SETTINGS -->
 <div class="menu" id="menu">
   <div onclick="fullscreen()">🔲 Full Screen</div>
   <div onclick="theme('#ff9933')">🎨 Saffron</div>
@@ -241,15 +167,13 @@ body{
   <div onclick="theme('#00ff00')">🎨 Green</div>
   <div onclick="theme('#ff00ff')">🎨 Pink</div>
   <div onclick="theme('#ffffff')">🎨 White</div>
-  <div onclick="lang()">🌐 Language</div>
-  <div onclick="share()">📤 Send App</div>
 </div>
 
 <!-- PAGE 1 -->
 <div class="page active" id="page1">
   <div class="top">🚩 Jai Shree Ram 🚩</div>
   <div class="settings" onclick="toggleMenu()">⚙️</div>
-  <button class="main-btn" id="openBtn" onclick="openPage()">OPEN</button>
+  <button class="main-btn" onclick="openPage()">OPEN</button>
 </div>
 
 <!-- PAGE 2 -->
@@ -258,9 +182,12 @@ body{
   <div class="settings" onclick="toggleMenu()">⚙️</div>
   <div class="top">🚩 Jai Shree Ram 🚩</div>
 
-  <a class="card" href="https://aiind8996-ui.github.io/You/" target="_blank">▶️ YouTube</a>
+  <!-- ✅ UPDATED YOUTUBE LINK -->
+  <a class="card" href="https://aiind8996-ui.github.io/YouTube-/" target="_blank">▶️ YouTube</a>
+
   <a class="card" href="https://aiind8996-ui.github.io/documents.-upload-/" target="_blank">📄 PDF Upload</a>
   <a class="card" href="https://aiind8996-ui.github.io/-/" target="_blank">🔗 CC</a>
+
   <div class="card">💬 Chat</div>
   <div class="chat-box">
     <a class="chat-btn" href="https://wa.me/916392908732" target="_blank">💚 Chat</a>
@@ -269,59 +196,27 @@ body{
 </div>
 
 <script>
-const page1 = document.getElementById("page1");
-const page2 = document.getElementById("page2");
-const menu  = document.getElementById("menu");
-
-// Generate colorful particles for home page
-const particlesContainer = document.getElementById("particles");
-for(let i=0; i<40; i++){
-  let p = document.createElement("div");
-  p.className = "particle";
-  p.style.left = Math.random()*100 + "%";
-  p.style.animationDuration = (5 + Math.random()*5) + "s";
-  p.style.width = p.style.height = (4 + Math.random()*8) + "px";
-  p.style.background = `hsl(${Math.random()*360}, 80%, 70%)`;
-  particlesContainer.appendChild(p);
-}
+const page1=document.getElementById("page1");
+const page2=document.getElementById("page2");
+const menu=document.getElementById("menu");
 
 function openPage(){
   page1.classList.remove("active");
   page2.classList.add("active");
-  menu.style.display="none";
 }
 function goBack(){
   page2.classList.remove("active");
   page1.classList.add("active");
-  menu.style.display="none";
 }
 function toggleMenu(){
-  menu.style.display = menu.style.display==="block"?"none":"block";
+  menu.style.display=menu.style.display==="block"?"none":"block";
 }
 function fullscreen(){
-  if(!document.fullscreenElement){
-    document.documentElement.requestFullscreen();
-  }else{
-    document.exitFullscreen();
-  }
+  document.documentElement.requestFullscreen();
 }
-function theme(color){
-  document.documentElement.style.setProperty('--accent',color);
+function theme(c){
+  document.documentElement.style.setProperty('--accent',c);
 }
-function lang(){ alert("Language option demo"); }
-function share(){
-  if(navigator.share){
-    navigator.share({title:"Jai Shree Ram App",url:location.href});
-  }
-}
-
-/* 🔒 GOOGLE / TOUCH LOCK */
-document.addEventListener("contextmenu", e => e.preventDefault());
-document.addEventListener("selectstart", e => e.preventDefault());
-document.addEventListener("copy", e => e.preventDefault());
-document.addEventListener("cut", e => e.preventDefault());
-document.addEventListener("paste", e => e.preventDefault());
-document.addEventListener("dragstart", e => e.preventDefault());
 </script>
 
 </body>
