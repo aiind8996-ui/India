@@ -1,4 +1,3 @@
-.................
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -25,7 +24,6 @@ body{
   overflow:hidden;
 }
 
-/* Pages */
 .page{
   display:none;
   height:100vh;
@@ -35,7 +33,6 @@ body{
 }
 .page.active{display:block;}
 
-/* Top bar */
 .top{
   position:fixed;
   top:0; left:0;
@@ -49,9 +46,10 @@ body{
   z-index:10;
   animation: floatText 3s ease-in-out infinite alternate;
 }
-@keyframes floatText{
-  from{transform:translateY(0)}
-  to{transform:translateY(-8px)}
+
+@keyframes floatText {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-10px); }
 }
 
 .back{
@@ -60,6 +58,7 @@ body{
   font-size:26px;
   z-index:11;
 }
+
 .settings{
   position:fixed;
   top:15px; right:15px;
@@ -67,7 +66,6 @@ body{
   z-index:11;
 }
 
-/* Menu */
 .menu{
   position:fixed;
   top:65px; right:15px;
@@ -87,36 +85,23 @@ body{
 .menu div:last-child{border:none;}
 .menu div:hover{background:#1c1c1c;}
 
-/* Home animation */
-#page1{
-  background:linear-gradient(45deg,#ff9933,#ffcc33,#ff3366,#ff9933);
-  background-size:600% 600%;
-  animation:bgMove 18s ease infinite;
-}
-@keyframes bgMove{
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
-}
-
-/* Button */
 .main-btn{
-  margin-top:90px;
-  padding:18px 50px;
-  font-size:22px;
-  border-radius:12px;
+  margin-top:80px;
+  padding:16px 45px;
+  font-size:20px;
+  border-radius:10px;
   border:2px solid var(--accent);
   background:#111;
   color:white;
-  animation:pulse 2s infinite;
+  cursor:pointer;
+  transition: transform 0.3s, background 0.3s;
 }
-@keyframes pulse{
-  0%{box-shadow:0 0 10px var(--accent)}
-  50%{box-shadow:0 0 30px var(--accent);transform:scale(1.05)}
-  100%{box-shadow:0 0 10px var(--accent)}
+.main-btn:hover{
+  background:var(--accent);
+  color:black;
+  transform: scale(1.05);
 }
 
-/* Cards */
 .card{
   margin:16px auto;
   width:85%;
@@ -129,14 +114,14 @@ body{
   font-size:18px;
   text-decoration:none;
   display:block;
-  animation:fadeUp 1s forwards;
+  transition: background 0.3s, transform 0.3s;
 }
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(30px)}
-  to{opacity:1;transform:translateY(0)}
+.card:hover{
+  background:var(--accent);
+  color:black;
+  transform: scale(1.03);
 }
 
-/* Chat */
 .chat-box{
   width:85%;
   max-width:320px;
@@ -153,13 +138,72 @@ body{
   font-size:16px;
   color:#25D366;
   text-decoration:none;
+  transition: background 0.3s, transform 0.3s;
 }
+.chat-btn:hover{
+  background:var(--accent);
+  color:black;
+  transform: scale(1.02);
+}
+
+#page1 {
+  background: linear-gradient(45deg, #ff9933, #ffcc33, #ff6600, #ff9933);
+  background-size: 400% 400%;
+  animation: smoothGradient 15s ease infinite;
+}
+
+@keyframes smoothGradient {
+  0% { background-position: 0% 50%; }
+  25% { background-position: 50% 50%; }
+  50% { background-position: 100% 50%; }
+  75% { background-position: 50% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+#openBtn {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1.5s forwards 0.5s, pulseGlow 2s infinite;
+}
+
+@keyframes fadeInUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 10px #ff9933; transform: scale(1); }
+  50% { box-shadow: 0 0 25px #ffcc33; transform: scale(1.05); }
+  100% { box-shadow: 0 0 10px #ff9933; transform: scale(1); }
+}
+
+.page#page2 .card {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeSlideUp 1s forwards;
+}
+
+.page#page2 .card:nth-of-type(1) { animation-delay: 0.2s; }
+.page#page2 .card:nth-of-type(2) { animation-delay: 0.4s; }
+.page#page2 .card:nth-of-type(3) { animation-delay: 0.6s; }
+.page#page2 .card:nth-of-type(4) { animation-delay: 0.8s; }
+
+@keyframes fadeSlideUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.page#page2 .chat-btn {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeSlideUp 1s forwards;
+}
+.page#page2 .chat-btn:nth-child(1) { animation-delay: 1s; }
+.page#page2 .chat-btn:nth-child(2) { animation-delay: 1.2s; }
 </style>
 </head>
 
 <body>
 
-<!-- SETTINGS -->
+<!-- SETTINGS MENU -->
 <div class="menu" id="menu">
   <div onclick="fullscreen()">🔲 Full Screen</div>
   <div onclick="theme('#ff9933')">🎨 Saffron</div>
@@ -167,13 +211,15 @@ body{
   <div onclick="theme('#00ff00')">🎨 Green</div>
   <div onclick="theme('#ff00ff')">🎨 Pink</div>
   <div onclick="theme('#ffffff')">🎨 White</div>
+  <div onclick="lang()">🌐 Language</div>
+  <div onclick="share()">📤 Send App</div>
 </div>
 
 <!-- PAGE 1 -->
 <div class="page active" id="page1">
   <div class="top">🚩 Jai Shree Ram 🚩</div>
   <div class="settings" onclick="toggleMenu()">⚙️</div>
-  <button class="main-btn" onclick="openPage()">OPEN</button>
+  <button class="main-btn" id="openBtn" onclick="openPage()">OPEN</button>
 </div>
 
 <!-- PAGE 2 -->
@@ -182,10 +228,9 @@ body{
   <div class="settings" onclick="toggleMenu()">⚙️</div>
   <div class="top">🚩 Jai Shree Ram 🚩</div>
 
-  <!-- ✅ UPDATED YOUTUBE LINK -->
-  <a class="card" href="https://aiind8996-ui.github.io/YouTube-/" target="_blank">▶️ YouTube</a>
-
+  <a class="card" href="https://aiind8996-ui.github.io/You/" target="_blank">▶️ YouTube</a>
   <a class="card" href="https://aiind8996-ui.github.io/documents.-upload-/" target="_blank">📄 PDF Upload</a>
+  <a class="card" href="https://aiind8996-ui.github.io/Photo-uplod-/" target="_blank">🖼️ Photo Upload</a>
   <a class="card" href="https://aiind8996-ui.github.io/-/" target="_blank">🔗 CC</a>
 
   <div class="card">💬 Chat</div>
@@ -196,27 +241,46 @@ body{
 </div>
 
 <script>
-const page1=document.getElementById("page1");
-const page2=document.getElementById("page2");
-const menu=document.getElementById("menu");
+const page1 = document.getElementById("page1");
+const page2 = document.getElementById("page2");
+const menu  = document.getElementById("menu");
 
 function openPage(){
   page1.classList.remove("active");
   page2.classList.add("active");
+  menu.style.display="none";
 }
 function goBack(){
   page2.classList.remove("active");
   page1.classList.add("active");
+  menu.style.display="none";
 }
 function toggleMenu(){
-  menu.style.display=menu.style.display==="block"?"none":"block";
+  menu.style.display = menu.style.display==="block"?"none":"block";
 }
 function fullscreen(){
-  document.documentElement.requestFullscreen();
+  if(!document.fullscreenElement){
+    document.documentElement.requestFullscreen();
+  }else{
+    document.exitFullscreen();
+  }
 }
-function theme(c){
-  document.documentElement.style.setProperty('--accent',c);
+function theme(color){
+  document.documentElement.style.setProperty('--accent',color);
 }
+function lang(){ alert("Language option demo"); }
+function share(){
+  if(navigator.share){
+    navigator.share({title:"Jai Shree Ram App",url:location.href});
+  }
+}
+
+document.addEventListener("contextmenu", e => e.preventDefault());
+document.addEventListener("selectstart", e => e.preventDefault());
+document.addEventListener("copy", e => e.preventDefault());
+document.addEventListener("cut", e => e.preventDefault());
+document.addEventListener("paste", e => e.preventDefault());
+document.addEventListener("dragstart", e => e.preventDefault());
 </script>
 
 </body>
