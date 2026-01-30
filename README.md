@@ -201,7 +201,7 @@ body{
 
 <!-- PAGE 1 -->
 <div class="page active" id="page1">
-  <div class="top">🚩 Jai Shree Ram 🚩</div>
+  <div class="top">..........</div>
   <div class="settings" onclick="toggleMenu()">⚙️</div>
   <button class="main-btn" onclick="openPage()">OPEN</button>
 </div>
