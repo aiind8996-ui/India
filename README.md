@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Jai Shree Ram App</title>
+<title>............ App</title>
 
 <style>
 :root{ --accent:#ff9933; }
@@ -210,7 +210,7 @@ body{
 <div class="page" id="page2">
   <div class="back" onclick="goBack()">←</div>
   <div class="settings" onclick="toggleMenu()">⚙️</div>
-  <div class="top">🚩 Jai Shree Ram 🚩</div>
+  <div class="top">......</div>
 
   <div class="card" onclick="openYouTube()">▶️ YouTube</div>
   <div class="card" onclick="openLink('https://aiind8996-ui.github.io/documents.-upload-/')">📄 PDF Upload</div>
@@ -219,8 +219,8 @@ body{
 
   <div class="card">💬 Chat</div>
   <div class="chat-box">
-    <a class="chat-btn" href="https://wa.me/916392908732" target="_blank">💚 Chat</a>
-    <a class="chat-btn" href="https://wa.me/917800049619" target="_blank">💚 Chat</a>
+    <a class="chat-btn" href="https://wa.me/917007576493" target="_blank">💚 Chat</a>
+    <a class="chat-btn" href="https://wa.me/917007576493" target="_blank">💚 Chat</a>
   </div>
 </div>
 
